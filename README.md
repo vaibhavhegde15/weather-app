@@ -8,8 +8,6 @@ npm install
 ```
 ## Development
 
-Steps to run the app locally:
-
 1. Run the below command in terminal to start the app
 ```shellscript
 npm run dev

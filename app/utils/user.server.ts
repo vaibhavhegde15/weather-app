@@ -17,32 +17,43 @@ export const createUser = async (user: LoginForm) => {
 }
 
 export const addCity = async (cityName: String, request: Request) => {
-  const user = await getUser(request)
+  try {
+    const user = await getUser(request)
 
-  if (user && user.cities.length >= 5) {
-    // Optionally, you could return a message to inform the user
-    return Response.json({error: "You can only have up to 5 favorite cities."});
-  }
-  return await prisma.user.update({
-    where: { id: await getUserId(request) },
-    data: {
-      cities: {
-        push: cityName,
+    if (user && user.cities.length >= 5) {
+      // Optionally, you could return a message to inform the user
+      return Response.json({ error: "You can only have up to 5 favorite cities." });
+    }
+    return await prisma.user.update({
+      where: { id: await getUserId(request) },
+      data: {
+        cities: {
+          push: cityName,
+        },
       },
-    },
-  });
+    });
+  }
+  catch (e) {
+    return e
+  }
 }
 
 export const removeCity = async (cityName: String, request: Request) => {
-  const { cities } = await prisma.user.findUnique({
-    where: {
-      id: await getUserId(request),
-    },
-  });
-  return await prisma.user.update({
-    where: { username: 'test' },
-    data: {
-      cities: cities.filter(city => city != cityName)
-    },
-  });
+  try {
+    const id = await getUserId(request)
+    const { cities } = await prisma.user.findUnique({
+      where: {
+        id: id
+      },
+    });
+    return await prisma.user.update({
+      where: { id: id },
+      data: {
+        cities: cities.filter(city => city != cityName)
+      },
+    });
+  }
+  catch (e) {
+    return e
+  }
 }

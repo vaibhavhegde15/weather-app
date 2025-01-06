@@ -20,7 +20,6 @@ export default function Login() {
           name="username"
           fullWidth
           margin="normal"
-          required
           error={!!actionData?.usernameError}
           helperText={actionData?.usernameError}
         />
@@ -30,7 +29,7 @@ export default function Login() {
           type="password"
           fullWidth
           margin="normal"
-          required
+          // required
           error={!!actionData?.passwordError}
           helperText={actionData?.passwordError}
         />

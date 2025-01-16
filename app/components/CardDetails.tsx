@@ -46,7 +46,23 @@ export default function CardDetails({ weather, fav }) {
         }}
       >
         {/* Favorite Icon */}
-        <IconButton
+        
+
+        <Box
+          sx={{
+            width: 400,
+            padding: 2,
+            border: "1px solid #ddd",
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: "#f9f9f9",
+          }}
+        >
+          {/* Header */}
+          <Typography variant="h5" align="center" gutterBottom>
+            {weather.location.name}, {weather.location.region}
+          </Typography>
+          <IconButton
           sx={{
             position: "absolute",
             top: 10,
@@ -73,21 +89,6 @@ export default function CardDetails({ weather, fav }) {
             </svg>
           )}
         </IconButton>
-
-        <Box
-          sx={{
-            width: 400,
-            padding: 2,
-            border: "1px solid #ddd",
-            borderRadius: 2,
-            boxShadow: 2,
-            backgroundColor: "#f9f9f9",
-          }}
-        >
-          {/* Header */}
-          <Typography variant="h5" align="center" gutterBottom>
-            {weather.location.name}, {weather.location.region}
-          </Typography>
           <Typography variant="subtitle2" align="center" color="textSecondary">
             {getFormattedDate()}
           </Typography>

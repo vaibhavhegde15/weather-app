@@ -119,10 +119,13 @@ export default function Index() {
                   sx={{
                     color: "blue",
                   }}
-                  onClick={() => fetcher.submit(
+                  onClick={(e) =>{ 
+                    e.stopPropagation()
+                    fetcher.submit(
                     { name: cityName, _action: "delete" },
                     { method: "post" }
                   )}
+                }
                 >
                   <FilledHeartSVG />
                 </IconButton>
